@@ -1,0 +1,79 @@
+/* ============================================
+   ADMIN — Estilos de paneles administrativos
+   ============================================ */
+
+.admin-panel {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+  animation: fadeIn 0.35s ease;
+}
+
+.admin-tabs {
+  display: flex;
+  gap: var(--space-2);
+  border-bottom: 2px solid var(--color-border);
+  padding-bottom: 2px;
+}
+
+.admin-tabs__btn {
+  padding: var(--space-2) var(--space-4);
+  font-size: var(--text-sm);
+  font-weight: var(--font-medium);
+  color: var(--color-text-secondary);
+  border-bottom: 2px solid transparent;
+  margin-bottom: -4px;
+  transition: all var(--transition-fast);
+}
+
+.admin-tabs__btn--active {
+  color: var(--color-primary-light);
+  border-bottom-color: var(--color-primary-light);
+  font-weight: var(--font-semibold);
+}
+
+.admin-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.admin-table th, .admin-table td {
+  padding: var(--space-3) var(--space-4);
+  text-align: left;
+  font-size: var(--text-xs);
+}
+
+.admin-table th {
+  border-bottom: 2px solid var(--color-border-strong);
+  color: var(--color-text-secondary);
+  font-weight: var(--font-semibold);
+}
+
+.admin-table td {
+  border-bottom: 1px solid var(--color-border);
+  vertical-align: middle;
+}
+
+.admin-table tr:hover td {
+  background-color: var(--color-surface-hover);
+}
+
+/* Matriz de permisos */
+.permisos-matrix {
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+}
+
+.permisos-matrix th {
+  background: #f8fafc;
+}
+
+.permisos-matrix td {
+  text-align: center;
+}
+
+.permisos-matrix td:first-child {
+  text-align: left;
+  font-weight: 500;
+}

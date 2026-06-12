@@ -1,0 +1,16 @@
+/* ============================================
+   Archivo de índice que importa todos los estilos
+   de componentes en un solo lugar.
+   ============================================ */
+@import './login.css';
+@import './sidebar.css';
+@import './header.css';
+@import './dashboard.css';
+@import './nuevo-viaje.css';
+@import './declaracion-sag.css';
+@import './registro-vehiculos.css';
+@import './menores.css';
+@import './seguimiento.css';
+@import './portal-funcionarios.css';
+@import './admin.css';
+@import './reportes.css';

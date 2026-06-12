@@ -1,0 +1,39 @@
+/* ============================================
+   REGISTRO VEHICULOS — Estilos de vehículos
+   ============================================ */
+
+.registro-vehiculos {
+  max-width: 44rem;
+  margin: 0 auto;
+  animation: fadeIn 0.3s ease;
+}
+
+.vehiculo-ficha {
+  background: white;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-2xl);
+  padding: var(--space-6);
+  box-shadow: var(--shadow-md);
+  margin-top: var(--space-5);
+}
+
+.vehiculo-ficha__header {
+  border-bottom: 2px solid var(--color-primary);
+  padding-bottom: var(--space-3);
+  margin-bottom: var(--space-4);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.vehiculo-ficha__plate {
+  font-family: var(--font-mono);
+  font-size: var(--text-2xl);
+  font-weight: var(--font-bold);
+  background: #f1f5f9;
+  border: 2px solid var(--color-text-primary);
+  padding: var(--space-1) var(--space-4);
+  border-radius: var(--radius-md);
+  color: var(--color-text-primary);
+  letter-spacing: 2px;
+}

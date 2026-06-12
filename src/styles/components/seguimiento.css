@@ -1,0 +1,119 @@
+/* ============================================
+   SEGUIMIENTO — Estilos de seguimiento de trámites
+   ============================================ */
+
+.seguimiento {
+  display: grid;
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+  gap: var(--space-6);
+  animation: fadeIn 0.35s ease;
+}
+
+@media (min-width: 1024px) {
+  .seguimiento {
+    grid-template-columns: 1fr 1.5fr;
+  }
+}
+
+.seguimiento__list-card {
+  background: white;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-2xl);
+  padding: var(--space-5);
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  height: max-content;
+}
+
+.seguimiento__detail-card {
+  background: white;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-2xl);
+  padding: var(--space-6);
+  box-shadow: var(--shadow-md);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+
+.tramite-item {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  padding: var(--space-4);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.tramite-item:hover {
+  border-color: var(--color-primary-light);
+  background: var(--color-surface-hover);
+}
+
+.tramite-item--active {
+  border-color: var(--color-primary-light);
+  background: var(--color-primary-bg);
+}
+
+/* Timeline */
+.timeline {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  margin-top: var(--space-2);
+  position: relative;
+  padding-left: var(--space-6);
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 7px;
+  top: 4px;
+  bottom: 4px;
+  width: 2px;
+  background: var(--color-border-strong);
+}
+
+.timeline__item {
+  position: relative;
+}
+
+.timeline__dot {
+  position: absolute;
+  left: -23px;
+  top: 4px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: white;
+  border: 2px solid var(--color-primary-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.timeline__dot--active {
+  background: var(--color-primary-light);
+}
+
+.timeline__info {
+  display: flex;
+  flex-direction: column;
+}
+
+.timeline__event {
+  font-size: var(--text-xs);
+  font-weight: var(--font-semibold);
+  color: var(--color-text-primary);
+}
+
+.timeline__meta {
+  font-size: 10px;
+  color: var(--color-text-secondary);
+  margin-top: 2px;
+}
