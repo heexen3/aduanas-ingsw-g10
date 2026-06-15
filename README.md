@@ -54,8 +54,17 @@ Para facilitar la evaluación, el sistema cuenta con cuentas de demostración pr
 
 ## 🚀 Métodos de Ejecución y Despliegue
 
-### 💻 Método 1: Ejecución Local "Un Clic" (Recomendado para Windows)
-Este método autodetecta el entorno, instala dependencias si faltan, compila el sitio de producción y levanta un servidor de archivos estáticos optimizado en el puerto `3000`, abriendo el navegador automáticamente.
+### ⚡ Método 1: Ejecución Local Cero Instalación (Sin Node.js / Sin Python) - ¡Recomendado!
+Este método es ideal para evaluar de forma local y offline sin tener absolutamente nada instalado en la máquina del evaluador. Utiliza un script de PowerShell nativo de Windows para servir la carpeta pre-compilada `dist` (la cual ya viene incluida construida en este repositorio).
+
+1. Abre la carpeta del proyecto en Windows Explorer.
+2. Haz doble clic en el archivo **`iniciar_localmente_sin_node.bat`**.
+3. El servidor se iniciará y abrirá automáticamente tu navegador predeterminado en **`http://localhost:3000`**.
+
+---
+
+### 💻 Método 2: Ejecución Local Estándar (Requiere Node.js)
+Este método autodetecta el entorno, instala dependencias si faltan, compila el sitio de producción de forma fresca y levanta un servidor de archivos estáticos en el puerto `3000` abriendo el navegador.
 
 1. Abre la carpeta del proyecto en Windows Explorer.
 2. Haz doble clic en el archivo **`iniciar_localmente.bat`**.
@@ -65,7 +74,7 @@ Este método autodetecta el entorno, instala dependencias si faltan, compila el 
 
 ---
 
-### 🐳 Método 2: Ejecución mediante Docker (Contenedores)
+### 🐳 Método 3: Ejecución mediante Docker (Contenedores)
 El proyecto cuenta con un `Dockerfile` en múltiples etapas que compila la aplicación y la monta en una imagen ultraligera de **Nginx** configurada para SPA.
 
 1. Abre tu terminal en la raíz del proyecto.
