@@ -1,96 +1,91 @@
-# Prototipo de Plataforma Aduanera Inteligente - Guía de Entregables
+# 🇨🇱 Plataforma Digital Aduanera Inteligente - Chile (Paso Fronterizo Terrestre)
 
-Este proyecto es un prototipo interactivo desarrollado en **React + TypeScript + Vite + Tailwind CSS** para optimizar el paso fronterizo terrestre, facilitando la gestión de declaraciones de viajeros y la fiscalización por parte de funcionarios de Aduanas, SAG y PDI.
-
-A continuación, se detallan los tres métodos disponibles para ejecutar, evaluar y desplegar el proyecto.
-
----
-
-## 🚀 Método 1: Ejecución Local "Un Clic" (Producción)
-Este método compila la aplicación a su estado de producción optimizado y levanta un servidor de archivos estáticos nativo en Node.js de forma automática. Es ideal para evaluaciones presenciales offline.
-
-### En Windows:
-1. Haz doble clic en el archivo **`iniciar_localmente.bat`** en la raíz del proyecto.
-2. El script realizará de forma automática las siguientes acciones:
-   - Comprobar que tienes **Node.js** instalado.
-   - Instalar las dependencias (`npm install`) si no existen.
-   - Compilar la aplicación (`npm run build`) para generar la versión optimizada en la carpeta `dist`.
-   - Iniciar el servidor local estático en el puerto **3000** (`node iniciar_servidor.cjs`).
-   - Abrir de forma automática tu navegador en **`http://localhost:3000`**.
-
-### En Linux / macOS:
-Si no estás en Windows, puedes iniciar el servidor de producción manualmente desde tu terminal corriendo:
-```bash
-# 1. Instalar dependencias
-npm install
-
-# 2. Compilar aplicación
-npm run build
-
-# 3. Iniciar el servidor estático
-node iniciar_servidor.cjs
-```
-*Luego abre tu navegador y entra a **`http://localhost:3000`**.*
+## 📌 Contexto del Proyecto y Evaluación Académica
+Este sistema ha sido diseñado como un **entregable para la evaluación académica de Desarrollo de Software (DUOC)**. 
+Consiste en un prototipo digital de alta fidelidad, interactivo y reactivo, orientado a optimizar, digitalizar y automatizar los procesos aduaneros, migratorios y sanitarios en los pasos fronterizos terrestres de Chile. El sistema integra el trabajo conjunto de tres entidades estatales clave:
+1. **Servicio Nacional de Aduanas** (Control de vehículos y equipaje).
+2. **Servicio Agrícola y Ganadero - SAG** (Declaración jurada y control fitosanitario).
+3. **Policía de Investigaciones - PDI** (Control migratorio y validación de menores de edad).
 
 ---
 
-## 🐳 Método 2: Dockerización y Contenedores (Recomendado para Evaluaciones)
-El proyecto está completamente dockerizado utilizando una construcción en múltiples etapas (*multi-stage build*) con **Node.js** para compilar y **Nginx** como servidor web de producción de alto rendimiento.
+## 🌟 Características Principales por Módulo
 
-### Requisitos:
-- Tener instalado **Docker** y **Docker Compose**.
+### 👨‍✈️ 1. Módulo del Viajero (Ciudadano)
+- **Registro Unificado de Viaje**: Formulario interactivo por pasos para registrar origen, destino, acompañantes y declarar propósitos de viaje.
+- **Validación Integrada de Menores de Edad**: Carga y validación del estado de autorizaciones notariales o certificados de nacimiento para la salida del país de menores.
+- **Admisión Temporal de Vehículos**: Registro de patentes, padrón y datos del propietario para agilizar el control vehicular en frontera.
+- **Declaración Jurada Digital del SAG**: Declaración jurada digitalizada con alerta y generación dinámica de **Código QR de Alerta Sanitaria** (diferenciado con riesgo alto/bajo según lo declarado).
+- **Seguimiento en Tiempo Real (Tracker)**: Panel de trazabilidad donde el ciudadano visualiza el estado actual de cada trámite ("Pendiente", "Aprobado", "Rechazado con Observaciones").
 
-### Instrucciones:
-1. Abre una terminal en la raíz del proyecto.
-2. Ejecuta el comando para compilar e iniciar el contenedor:
+### 🕵️‍♂️ 2. Módulo de Funcionarios (Inspectores en Frontera)
+- **Portal de Aduanas**: Bandeja de entrada para revisar vehículos declarados, inspeccionar padrones y registrar aprobaciones o rechazos.
+- **Portal del SAG**: Control y validación física de equipaje, gestionando alertas sanitarias de viajeros que declararon portar productos regulados.
+- **Portal de la PDI**: Módulo de control migratorio rápido y validación biométrica/documental de menores de edad.
+- **Gestión Obligatoria de Observaciones**: En caso de rechazo, el funcionario debe redactar obligatoriamente una observación (ej: *"Padrón borroso"*), la cual se notifica de inmediato al historial visible del ciudadano.
+
+### 📊 3. Consola de Administración y Reportes
+- **Consola de Auditoría**: Trazabilidad completa con logs de eventos temporales por cada acción de los funcionarios para auditorías académicas.
+- **Métricas Operacionales**: Dashboard estadístico con gráficos interactivos (Recharts) que muestran el flujo de viajeros, tasas de aprobación/rechazo y tiempos promedio de atención.
+
+---
+
+## 🛠️ Stack Tecnológico
+- **Frontend Core**: React 18 (TypeScript)
+- **Construcción & Bundler**: Vite 6
+- **Diseño & Estilos**: Tailwind CSS 4 + MUI Material Icons
+- **Visualización de Datos**: Recharts (Gráficos interactivos de flujo y rendimiento)
+- **Gestión de Estado**: Context API nativa de React para persistencia de estados y autenticación en memoria local (`localStorage`).
+
+---
+
+## 🚪 Credenciales de Acceso Rápido (Demo)
+Para facilitar la evaluación, el sistema cuenta con cuentas de demostración pre-configuradas para cada perfil:
+
+| Perfil / Rol | Correo Electrónico | Contraseña |
+| :--- | :--- | :--- |
+| **Viajero (Ciudadano)** | `viajero@aduanas.cl` | `viajero123` |
+| **Inspector de Aduanas** | `aduanas@funcionarios.cl` | `aduanas123` |
+| **Inspector del SAG** | `sag@funcionarios.cl` | `sag123` |
+| **Oficial de la PDI** | `pdi@funcionarios.cl` | `pdi123` |
+| **Administrador General**| `admin@plataforma.cl` | `admin123` |
+
+---
+
+## 🚀 Métodos de Ejecución y Despliegue
+
+### 💻 Método 1: Ejecución Local "Un Clic" (Recomendado para Windows)
+Este método autodetecta el entorno, instala dependencias si faltan, compila el sitio de producción y levanta un servidor de archivos estáticos optimizado en el puerto `3000`, abriendo el navegador automáticamente.
+
+1. Abre la carpeta del proyecto en Windows Explorer.
+2. Haz doble clic en el archivo **`iniciar_localmente.bat`**.
+3. El navegador se abrirá de forma automática en: **`http://localhost:3000`**.
+
+*(Para Linux/macOS, puedes levantar el servidor de producción ejecutando `npm install && npm run build && node iniciar_servidor.cjs` en tu terminal).*
+
+---
+
+### 🐳 Método 2: Ejecución mediante Docker (Contenedores)
+El proyecto cuenta con un `Dockerfile` en múltiples etapas que compila la aplicación y la monta en una imagen ultraligera de **Nginx** configurada para SPA.
+
+1. Abre tu terminal en la raíz del proyecto.
+2. Construye y levanta los servicios:
    ```bash
    docker compose up --build
    ```
-3. Una vez iniciado, abre tu navegador y accede a:
-   - **`http://localhost:8080`**
-
-### Detalles Técnicos del Contenedor:
-- El puerto expuesto es el **`8080`**.
-- La configuración de Nginx (`nginx.conf`) incluye reglas de reescritura para dar soporte al enrutamiento de rutas virtuales en el lado del cliente (Single Page Application).
+3. Accede desde tu navegador a: **`http://localhost:8080`**.
 
 ---
 
-## ☁️ Método 3: Despliegue en Servidores Gratuitos (Enlace Web Público)
+### ☁️ Método 3: Despliegue Público Gratuito (Enlace Web)
 
-Dado que la aplicación es 100% frontend (cliente), es muy sencillo alojarla gratis en la nube. Tienes tres opciones recomendadas:
+#### Opción A: Vercel (Recomendado)
+1. Instala el CLI de Vercel e inicia sesión: `npx vercel`
+2. El sistema detectará automáticamente que es un proyecto Vite, configúralo con los valores por defecto y en 2 minutos tendrás tu link público.
 
-### Opción A: Vercel (Recomendado - 2 minutos)
-Vercel es la plataforma líder para hospedar aplicaciones de Vite y React.
-1. Crea una cuenta gratuita en [Vercel](https://vercel.com).
-2. Conecta tu repositorio de GitHub o ejecuta el comando CLI en tu máquina local:
-   ```bash
-   npx vercel
-   ```
-3. Sigue las instrucciones por pantalla. Vercel detectará que es un proyecto de Vite automáticamente, lo compilará y te dará un enlace público permanente.
-
-### Opción B: Netlify (Fácil y Rápido)
-Netlify es otra opción ideal para sitios estáticos.
-1. Crea una cuenta gratuita en [Netlify](https://www.netlify.com).
-2. Arrastra y suelta la carpeta **`dist`** (luego de correr `npm run build`) en la interfaz web de Netlify, o vincula tu repositorio de GitHub para despliegues automáticos.
-3. Tendrás tu sitio en línea de inmediato.
-
-### Opción C: GitHub Pages (Automatizado mediante CI/CD)
-El proyecto incluye un flujo de trabajo configurado para GitHub Actions en `.github/workflows/deploy.yml`. 
+#### Opción B: GitHub Pages (Automatizado mediante CI/CD)
+El repositorio cuenta con la acción de GitHub Actions configurada en `.github/workflows/deploy.yml`.
 1. Sube este proyecto a tu repositorio de **GitHub**.
-2. Ve a la configuración de tu repositorio: **Settings > Pages**.
-3. En la sección **Build and deployment**, selecciona como origen **GitHub Actions**.
-4. ¡Listo! Cada vez que hagas `git push` a la rama `main` o `master`, GitHub compilará y publicará tu aplicación de forma automática.
-5. El flujo ya incluye soporte para enrutamiento SPA mediante redirecciones de fallback en `404.html`.
-
----
-
-## 🛠️ Desarrollo Local (Dev Mode)
-Si deseas modificar el código en tiempo real con recarga caliente (*Hot Module Replacement*):
-```bash
-# 1. Instalar dependencias
-npm install
-
-# 2. Iniciar servidor de desarrollo de Vite
-npm run dev
-```
-*Abre tu navegador en la URL indicada por la terminal (usualmente `http://localhost:5173`).*
+2. Ve a **Settings > Pages** en tu repositorio de GitHub.
+3. En **Build and deployment**, selecciona **GitHub Actions** como origen.
+4. Cada `git push` en la rama `main` o `master` compilará la versión final de producción y la publicará en la web pública gratuita de GitHub.
