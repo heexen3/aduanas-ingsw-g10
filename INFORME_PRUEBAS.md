@@ -132,13 +132,9 @@ Este documento detalla el registro y los resultados de las pruebas de aceptació
 
 ---
 
-## 3. Conclusiones y Firmas de Calidad
+## 3. Conclusiones
 
 * **Conclusión de Ingeniería de Requisitos:** Las interfaces desarrolladas cumplen con la trazabilidad bidireccional entre la especificación académica de casos y la implementación técnica.
 * **Conclusión de Pruebas Unitarias/UAT:** La tasa de éxito del 100% y la persistencia de datos local garantizan que el prototipo de la plataforma es robusto y está listo para ser defendido ante la comisión evaluadora.
 
-```
--------------------------------               -------------------------------
-      Felipe Ortega (Aduanas)                       Pablo Moreno (PDI)
-     Inspector Jefe de Turno                       Oficial de Migraciones
-```
+

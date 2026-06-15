@@ -1,0 +1,9 @@
+services:
+  prototipo-aduana:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: prototipo_aduana_container
+    ports:
+      - "8080:80"
+    restart: unless-stopped
