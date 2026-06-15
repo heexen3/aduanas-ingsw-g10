@@ -79,11 +79,7 @@ El proyecto cuenta con un `Dockerfile` en múltiples etapas que compila la aplic
 
 ### ☁️ Método 3: Despliegue Público Gratuito (Enlace Web)
 
-#### Opción A: Vercel (Recomendado)
-1. Instala el CLI de Vercel e inicia sesión: `npx vercel`
-2. El sistema detectará automáticamente que es un proyecto Vite, configúralo con los valores por defecto y en 2 minutos tendrás tu link público.
-
-#### Opción B: GitHub Pages (Automatizado mediante CI/CD)
+#### GitHub Pages (Automatizado mediante CI/CD)
 El repositorio cuenta con la acción de GitHub Actions configurada en `.github/workflows/deploy.yml`.
 1. Sube este proyecto a tu repositorio de **GitHub**.
 2. Ve a **Settings > Pages** en tu repositorio de GitHub.
