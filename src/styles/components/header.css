@@ -1,5 +1,7 @@
 .header {
-  background: var(--color-surface);
+  background: rgba(10, 15, 30, 0.45);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   border-bottom: 1px solid var(--color-border);
   display: flex;
   align-items: center;
@@ -7,33 +9,36 @@
   padding: 0 var(--space-4);
   height: var(--header-height);
   flex-shrink: 0;
+  z-index: 40;
 }
 @media (min-width: 1024px) { .header { padding: 0 var(--space-6); } }
 
 .header__left { display: flex; align-items: center; gap: var(--space-3); }
 .header__menu-btn { padding: var(--space-1); border-radius: var(--radius-md); color: var(--color-text-secondary); }
-.header__menu-btn:hover { background: #f3f4f6; }
+.header__menu-btn:hover { background: rgba(255,255,255,0.06); color: white; }
 @media (min-width: 1024px) { .header__menu-btn { display: none; } }
 
-.header__page-title { font-size: var(--text-sm); font-weight: var(--font-medium); color: var(--color-text-primary); }
+.header__page-title { font-size: var(--text-sm); font-weight: var(--font-semibold); color: var(--color-text-primary); letter-spacing: 0.01em; }
 .header__date { font-size: var(--text-xs); color: var(--color-text-muted); }
 
 .header__right { display: flex; align-items: center; gap: var(--space-2); }
 
 /* Notification bell */
 .header__notif { position: relative; }
-.header__notif-btn { position: relative; padding: var(--space-2); border-radius: var(--radius-lg); color: var(--color-text-secondary); transition: background var(--transition-fast); }
-.header__notif-btn:hover { background: #f3f4f6; }
-.header__notif-dot { position: absolute; top: 0.375rem; right: 0.375rem; width: 0.5rem; height: 0.5rem; border-radius: 50%; background: var(--color-danger); }
+.header__notif-btn { position: relative; padding: var(--space-2); border-radius: var(--radius-lg); color: var(--color-text-secondary); transition: all var(--transition-fast); }
+.header__notif-btn:hover { background: rgba(255,255,255,0.06); color: white; }
+.header__notif-dot { position: absolute; top: 0.375rem; right: 0.375rem; width: 0.5rem; height: 0.5rem; border-radius: 50%; background: var(--color-danger); box-shadow: 0 0 8px var(--color-danger); }
 
 .header__notif-dropdown {
   position: absolute;
   right: 0; top: 2.75rem;
   width: 20rem;
-  background: var(--color-surface);
+  background: rgba(15, 23, 42, 0.95);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
   border-radius: var(--radius-xl);
   box-shadow: var(--shadow-xl);
-  border: 1px solid var(--color-border);
+  border: 1px solid var(--color-border-strong);
   z-index: 50;
   overflow: hidden;
 }
@@ -42,11 +47,11 @@
   padding: var(--space-3) var(--space-4);
   border-bottom: 1px solid var(--color-border);
 }
-.header__notif-header span { font-size: var(--text-sm); font-weight: var(--font-semibold); }
+.header__notif-header span { font-size: var(--text-sm); font-weight: var(--font-bold); color: white; }
 .header__notif-item {
   display: flex; align-items: flex-start; gap: var(--space-3);
   padding: var(--space-3) var(--space-4);
-  border-bottom: 1px solid rgba(11,58,110,0.05);
+  border-bottom: 1px solid var(--color-border);
   transition: background var(--transition-fast);
 }
 .header__notif-item:last-child { border-bottom: none; }
@@ -62,7 +67,8 @@
   padding: var(--space-1) var(--space-3);
   border-radius: var(--radius-lg);
   font-size: var(--text-xs);
-  font-weight: var(--font-medium);
+  font-weight: var(--font-semibold);
   color: white;
+  border: 1px solid rgba(255,255,255,0.08);
 }
 @media (min-width: 640px) { .header__role-badge { display: flex; } }

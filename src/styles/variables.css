@@ -5,50 +5,50 @@
    ============================================ */
 
 :root {
-  /* ---- Colores Primarios ---- */
-  --color-primary: #0b3a6e;
-  --color-primary-hover: #0e4a8a;
-  --color-primary-light: #1b5fad;
-  --color-primary-bg: #e8eef6;
-  --color-primary-bg-hover: #dce5f0;
+  /* ---- Colores Primarios (Neon Cobalt & Blue) ---- */
+  --color-primary: #3b82f6;
+  --color-primary-hover: #60a5fa;
+  --color-primary-light: #93c5fd;
+  --color-primary-bg: rgba(59, 130, 246, 0.15);
+  --color-primary-bg-hover: rgba(59, 130, 246, 0.25);
 
-  /* ---- Estados ---- */
-  --color-success: #27ae60;
-  --color-success-bg: #dcfce7;
-  --color-success-text: #15803d;
+  /* ---- Estados (Versiones vibrantes para Modo Oscuro) ---- */
+  --color-success: #10b981;
+  --color-success-bg: rgba(16, 185, 129, 0.12);
+  --color-success-text: #34d399;
 
-  --color-warning: #e67e22;
-  --color-warning-bg: #fef3c7;
-  --color-warning-text: #92400e;
+  --color-warning: #f59e0b;
+  --color-warning-bg: rgba(245, 158, 11, 0.12);
+  --color-warning-text: #fbbf24;
 
-  --color-danger: #c0392b;
-  --color-danger-bg: #fee2e2;
-  --color-danger-text: #b91c1c;
+  --color-danger: #ef4444;
+  --color-danger-bg: rgba(239, 68, 68, 0.12);
+  --color-danger-text: #f87171;
 
-  --color-info: #1d4ed8;
-  --color-info-bg: #dbeafe;
-  --color-info-text: #1d4ed8;
+  --color-info: #3b82f6;
+  --color-info-bg: rgba(59, 130, 246, 0.12);
+  --color-info-text: #60a5fa;
 
-  /* ---- Neutrales ---- */
-  --color-bg: #f4f6f9;
-  --color-surface: #ffffff;
-  --color-surface-hover: #f8fafd;
-  --color-border: rgba(11, 58, 110, 0.08);
-  --color-border-strong: rgba(11, 58, 110, 0.15);
-  --color-text-primary: #111827;
-  --color-text-secondary: #6b7280;
-  --color-text-muted: #9ca3af;
+  /* ---- Neutrales (Esquema Obsidian) ---- */
+  --color-bg: #070913;
+  --color-surface: rgba(15, 23, 42, 0.55);
+  --color-surface-hover: rgba(30, 41, 59, 0.75);
+  --color-border: rgba(255, 255, 255, 0.08);
+  --color-border-strong: rgba(255, 255, 255, 0.16);
+  --color-text-primary: #f3f4f6;
+  --color-text-secondary: #9ca3af;
+  --color-text-muted: #6b7280;
   --color-text-inverse: #ffffff;
 
   /* ---- Colores de Rol ---- */
-  --color-role-viajero: #27ae60;
-  --color-role-aduanas: #1b5fad;
-  --color-role-sag: #e67e22;
-  --color-role-pdi: #9d174d;
-  --color-role-admin: #8e44ad;
+  --color-role-viajero: #10b981;
+  --color-role-aduanas: #3b82f6;
+  --color-role-sag: #f59e0b;
+  --color-role-pdi: #ec4899;
+  --color-role-admin: #a855f7;
 
   /* ---- Tipografía ---- */
-  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-sans: 'Outfit', system-ui, -apple-system, sans-serif;
   --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
   --font-serif: 'Source Serif 4', Georgia, serif;
 
@@ -84,11 +84,11 @@
   --radius-2xl: 1.25rem;
   --radius-full: 9999px;
 
-  /* ---- Sombras ---- */
-  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.04);
-  --shadow-md: 0 2px 8px rgba(0, 0, 0, 0.06);
-  --shadow-lg: 0 4px 16px rgba(0, 0, 0, 0.08);
-  --shadow-xl: 0 8px 32px rgba(0, 0, 0, 0.12);
+  /* ---- Sombras (Glow de Neón en Oscuro) ---- */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.6);
+  --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.7);
+  --shadow-xl: 0 12px 48px rgba(0, 0, 0, 0.8);
 
   /* ---- Transiciones ---- */
   --transition-fast: 150ms ease;
