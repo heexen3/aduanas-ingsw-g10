@@ -16,7 +16,9 @@
 }
 
 .portal-funcionarios__list {
-  background: white;
+  background: var(--color-surface);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-2xl);
   padding: var(--space-5);
@@ -28,7 +30,9 @@
 }
 
 .portal-funcionarios__detail {
-  background: white;
+  background: var(--color-surface);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-2xl);
   padding: var(--space-6);
@@ -52,7 +56,7 @@
 }
 
 .func-kpi {
-  background: #f8fafc;
+  background: rgba(255, 255, 255, 0.02);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-lg);
   padding: var(--space-2) var(--space-3);
@@ -71,7 +75,7 @@
 }
 
 .portal-funcionarios__timeline-box {
-  background: #f8fafc;
+  background: rgba(15, 23, 42, 0.35);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-xl);
   padding: var(--space-4);
