@@ -27,7 +27,7 @@
 .header__notif { position: relative; }
 .header__notif-btn { position: relative; padding: var(--space-2); border-radius: var(--radius-lg); color: var(--color-text-secondary); transition: all var(--transition-fast); }
 .header__notif-btn:hover { background: rgba(255,255,255,0.06); color: white; }
-.header__notif-dot { position: absolute; top: 0.375rem; right: 0.375rem; width: 0.5rem; height: 0.5rem; border-radius: 50%; background: var(--color-danger); box-shadow: 0 0 8px var(--color-danger); }
+.header__notif-dot { position: absolute; top: 0.375rem; right: 0.375rem; width: 0.5rem; height: 0.5rem; border-radius: 50%; background: var(--color-danger); border: 1.5px solid var(--color-bg); }
 
 .header__notif-dropdown {
   position: absolute;
