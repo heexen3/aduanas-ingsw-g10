@@ -208,7 +208,7 @@ export function PortalAduanas() {
 
             {/* Vehículo particular */}
             {activeTramite.vehiculo && (
-              <div style={{ padding: 'var(--space-3)', background: '#fafbfe', border: '1px solid var(--color-border)', borderRadius: '10px' }}>
+              <div style={{ padding: 'var(--space-3)', background: 'rgba(15, 23, 42, 0.35)', border: '1px solid var(--color-border)', borderRadius: '10px' }}>
                 <h4 style={{ fontSize: '11px', color: 'var(--color-text-secondary)', fontWeight: 600, marginBottom: '6px', display: 'flex', alignItems: 'center', gap: '4px' }}>
                   <Car size={12} /> Vehículo Registrado
                 </h4>
@@ -234,7 +234,7 @@ export function PortalAduanas() {
               <h4 style={{ fontSize: '11px', color: 'var(--color-text-secondary)', fontWeight: 600, marginBottom: '6px' }}>Documentación Adjunta</h4>
               <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, minmax(0, 1fr))', gap: '4px' }}>
                 {activeTramite.documentos.map((d, i) => (
-                  <div key={i} style={{ padding: '4px 8px', background: '#f8fafc', borderRadius: '4px', fontSize: '11px', border: '1px solid var(--color-border)' }}>
+                  <div key={i} style={{ padding: '4px 8px', background: 'rgba(255, 255, 255, 0.03)', borderRadius: '4px', fontSize: '11px', border: '1px solid var(--color-border)' }}>
                     📄 {d}
                   </div>
                 ))}

@@ -732,7 +732,7 @@ export function NuevoViaje({ onNavigate }: NuevoViajeProps) {
                   {traeProductos ? (
                     <div>
                       <p style={{ fontSize: 'var(--text-xs)', color: 'var(--color-warning-text)' }}>⚠️ Declaración con productos regulados</p>
-                      <p style={{ fontSize: 'var(--text-xs)', background: '#fffbeb', padding: '6px', borderRadius: '4px', marginTop: '4px' }}>
+                      <p style={{ fontSize: 'var(--text-xs)', background: 'var(--color-warning-bg)', color: 'var(--color-warning-text)', padding: '6px', borderRadius: '4px', marginTop: '4px', border: '1px solid rgba(245, 158, 11, 0.2)' }}>
                         {descProductos}
                       </p>
                     </div>

@@ -152,7 +152,7 @@ export function PortalPDI() {
             )}
 
             {/* Ficha Ciudadano */}
-            <div style={{ border: '1px solid var(--color-border)', borderRadius: '12px', padding: 'var(--space-4)', background: '#f8fafc' }}>
+            <div style={{ border: '1px solid var(--color-border)', borderRadius: '12px', padding: 'var(--space-4)', background: 'rgba(15, 23, 42, 0.35)' }}>
               <h4 style={{ fontSize: 'var(--text-sm)', fontWeight: 600, color: 'var(--color-primary)', borderBottom: '1px solid var(--color-border)', paddingBottom: '6px', marginBottom: '8px' }}>
                 Ficha de Control Migratorio
               </h4>

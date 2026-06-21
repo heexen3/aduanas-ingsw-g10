@@ -166,7 +166,7 @@ export function PortalSAG() {
             </div>
 
             {/* Detalle Declarado */}
-            <div style={{ padding: 'var(--space-4)', background: '#f8fafc', border: '1px solid var(--color-border)', borderRadius: '12px' }}>
+            <div style={{ padding: 'var(--space-4)', background: 'rgba(15, 23, 42, 0.35)', border: '1px solid var(--color-border)', borderRadius: '12px' }}>
               <h4 style={{ fontSize: '11px', color: 'var(--color-text-secondary)', fontWeight: 600, marginBottom: '6px' }}>
                 Detalle de la Pre-Declaración Fitosanitaria
               </h4>
@@ -175,7 +175,7 @@ export function PortalSAG() {
                   <span style={{ fontSize: 'var(--text-xs)', fontWeight: 600, color: 'var(--color-warning-text)' }}>
                     Efectos declarados por el ciudadano:
                   </span>
-                  <p style={{ fontSize: 'var(--text-xs)', marginTop: '4px', background: 'white', border: '1px solid var(--color-border)', padding: 'var(--space-2)', borderRadius: '6px' }}>
+                  <p style={{ fontSize: 'var(--text-xs)', marginTop: '4px', background: 'rgba(0, 0, 0, 0.2)', border: '1px solid var(--color-border)', padding: 'var(--space-2)', borderRadius: '6px', color: 'var(--color-text-primary)' }}>
                     {activeTramite.declaracionSAG.descripcion}
                   </p>
                 </div>

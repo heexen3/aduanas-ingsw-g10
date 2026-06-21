@@ -138,7 +138,7 @@ export function SeguimientoTramites() {
               </h4>
               <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, minmax(0, 1fr))', gap: '6px' }}>
                 {activeTramite.documentos.map((d, i) => (
-                  <div key={i} style={{ padding: '6px 10px', background: '#f8fafc', border: '1px solid var(--color-border)', borderRadius: '6px', fontSize: '11px', display: 'flex', alignItems: 'center', gap: '6px' }}>
+                  <div key={i} style={{ padding: '6px 10px', background: 'rgba(255, 255, 255, 0.03)', border: '1px solid var(--color-border)', borderRadius: '6px', fontSize: '11px', display: 'flex', alignItems: 'center', gap: '6px' }}>
                     <div style={{ width: '6px', height: '6px', borderRadius: '50%', background: 'var(--color-success)' }} />
                     {d}
                   </div>
@@ -173,7 +173,7 @@ export function SeguimientoTramites() {
 
             {/* Vehículo Particular */}
             {activeTramite.vehiculo && (
-              <div style={{ padding: 'var(--space-4)', background: '#fafbfe', border: '1px solid var(--color-border)', borderRadius: 'var(--radius-xl)' }}>
+              <div style={{ padding: 'var(--space-4)', background: 'rgba(15, 23, 42, 0.35)', border: '1px solid var(--color-border)', borderRadius: 'var(--radius-xl)' }}>
                 <h4 style={{ fontSize: '11px', color: 'var(--color-text-secondary)', fontWeight: 600, marginBottom: '8px', display: 'flex', alignItems: 'center', gap: '4px' }}>
                   <Car size={12} /> Vehículo Registrado
                 </h4>
@@ -196,7 +196,7 @@ export function SeguimientoTramites() {
 
             {/* Declaración SAG */}
             {activeTramite.declaracionSAG && (
-              <div style={{ padding: 'var(--space-4)', background: activeTramite.declaracionSAG.traeProductos ? '#fffbeb' : '#f0fdf4', border: '1px solid var(--color-border)', borderRadius: 'var(--radius-xl)' }}>
+              <div style={{ padding: 'var(--space-4)', background: activeTramite.declaracionSAG.traeProductos ? 'var(--color-warning-bg)' : 'var(--color-success-bg)', border: '1px solid var(--color-border)', borderRadius: 'var(--radius-xl)' }}>
                 <h4 style={{ fontSize: '11px', color: 'var(--color-text-secondary)', fontWeight: 600, marginBottom: '6px' }}>
                   Estado Declaración Fitosanitaria (SAG)
                 </h4>
@@ -205,7 +205,7 @@ export function SeguimientoTramites() {
                     <span style={{ color: 'var(--color-warning-text)', fontWeight: 600, fontSize: '11px' }}>
                       ⚠️ Contiene productos regulados declarados:
                     </span>
-                    <p style={{ fontSize: '11px', marginTop: '2px', background: 'rgba(255, 255, 255, 0.6)', padding: '6px', borderRadius: '4px' }}>
+                    <p style={{ fontSize: '11px', marginTop: '2px', background: 'rgba(0, 0, 0, 0.2)', padding: '6px', borderRadius: '4px', color: 'var(--color-text-primary)' }}>
                       {activeTramite.declaracionSAG.descripcion}
                     </p>
                   </div>

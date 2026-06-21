@@ -222,7 +222,7 @@ export function RegistroVehiculos() {
               </div>
             </div>
 
-            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', background: '#f8fafc', padding: 'var(--space-4)', borderRadius: 'var(--radius-xl)', border: '1px solid var(--color-border)' }}>
+            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', background: 'rgba(15, 23, 42, 0.45)', padding: 'var(--space-4)', borderRadius: 'var(--radius-xl)', border: '1px solid var(--color-border)' }}>
               <QrCode size={100} color="var(--color-primary)" style={{ marginBottom: '8px' }} />
               <span style={{ fontSize: 'var(--text-xs)', fontWeight: 600, fontFamily: 'var(--font-mono)' }}>{qrCodeData}</span>
               <span style={{ fontSize: '10px', color: 'var(--color-text-secondary)', marginTop: '2px', textAlign: 'center' }}>

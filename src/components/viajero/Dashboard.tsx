@@ -134,7 +134,7 @@ export function Dashboard() {
                 <CartesianGrid strokeDasharray="3 3" stroke="rgba(11,58,110,0.05)" />
                 <XAxis dataKey="hora" stroke="var(--color-text-muted)" fontSize={11} />
                 <YAxis stroke="var(--color-text-muted)" fontSize={11} />
-                <Tooltip contentStyle={{ background: '#fff', border: '1px solid var(--color-border)', borderRadius: '8px' }} />
+                <Tooltip contentStyle={{ background: 'rgba(15, 23, 42, 0.9)', border: '1px solid var(--color-border-strong)', borderRadius: '8px', color: 'var(--color-text-primary)' }} />
                 <Area type="monotone" dataKey="personas" name="Personas" stroke="var(--color-success)" fillOpacity={1} fill="url(#colorPersonas)" strokeWidth={2} />
                 <Area type="monotone" dataKey="vehiculos" name="Vehículos" stroke="var(--color-primary-light)" fillOpacity={1} fill="url(#colorVehiculos)" strokeWidth={2} />
               </AreaChart>

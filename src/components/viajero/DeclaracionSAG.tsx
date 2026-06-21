@@ -128,7 +128,7 @@ export function DeclaracionSAG() {
                 ? 'Debe presentar este código QR al inspector SAG en frontera para la revisión física de sus productos.'
                 : 'Muestre este comprobante en los lectores electrónicos de la aduana para habilitar su paso directo.'}
             </p>
-            <div style={{ marginTop: 'var(--space-4)', padding: '6px 12px', background: '#f1f5f9', borderRadius: '6px', fontFamily: 'var(--font-mono)', fontSize: '11px', fontWeight: 600 }}>
+            <div style={{ marginTop: 'var(--space-4)', padding: '6px 12px', background: 'rgba(255, 255, 255, 0.05)', borderRadius: '6px', fontFamily: 'var(--font-mono)', fontSize: '11px', fontWeight: 600 }}>
               Código: {qrCodeData}
             </div>
 
