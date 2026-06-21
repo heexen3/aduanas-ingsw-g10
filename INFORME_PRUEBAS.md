@@ -1,140 +1,137 @@
-# Informe de Ejecución de Pruebas de Aceptación (UAT)
-**Asignatura:** Ingeniería de Software  
+# Informe de Ejecución de Pruebas de Aceptación (UAT) y Funcionales
+
+**Asignatura:** Desarrollo de Software (DUOC)  
 **Proyecto:** Plataforma Integrada "Aduanas Inteligente Chile"  
-**Versión del Software:** 1.1 (Estable)  
-**Fecha de Ejecución:** 12 de Junio de 2026  
-**Responsable de Calidad:** Equipo de Desarrollo (G10)
+**Versión del Software:** 1.2 (Estable con integraciones dinámicas)  
+**Fecha de Ejecución:** 21 de Junio de 2026  
+**Responsable de Calidad:** Equipo de Desarrollo (G10) e Inteligencia Artificial (Antigravity)
 
 ---
 
 ## 1. Resumen Ejecutivo de Pruebas
 
-Este documento detalla el registro y los resultados de las pruebas de aceptación de usuario (UAT) y pruebas funcionales de caja negra ejecutadas sobre la versión **1.1** del prototipo. El objetivo de este ciclo de pruebas es validar que las interacciones críticas de negocio (flujos de control aduanero, validación de menores, alertas fitosanitarias del SAG y alertas migratorias de la PDI) cumplan con las reglas definidas en las historias de usuario del proyecto.
+Este documento detalla el registro y los resultados del ciclo completo de pruebas de aceptación de usuario (UAT) y pruebas funcionales de caja negra ejecutadas sobre la versión **1.2** del prototipo. El objetivo de este ciclo fue validar las interacciones críticas de negocio, incluyendo la implementación de los gaps de diseño solucionados (Registro de usuarios dinámicos, Recuperación de contraseña e integración real del panel de Administración).
 
 ### Métricas de Ejecución:
 | Métrica | Valor |
 | :--- | :---: |
-| **Total de Casos de Prueba Planificados** | 5 |
-| **Casos Ejecutados** | 5 |
-| **Casos Exitosos (Pass)** | 5 |
+| **Total de Casos de Prueba Planificados** | 14 |
+| **Casos Ejecutados** | 14 |
+| **Casos Exitosos (Pass)** | 14 |
 | **Casos Fallidos (Fail)** | 0 |
 | **Tasa de Aprobación (Pass Rate)** | 100% |
-| **Estado del Software** | **APROBADO PARA DESPLIEGUE** |
+| **Estado del Software** | **APROBADO PARA DESPLIEGUE (100% FUNCIONAL)** |
 
 ---
 
 ## 2. Detalle de Casos de Prueba Ejecutados
 
-### 🛂 CASO DE PRUEBA 01: Validación de Autenticación Exitosa
-* **ID:** TC-AUT-001
-* **Módulo:** Autenticación y Seguridad
+### 🛂 MÓDULO 1: AUTENTICACIÓN, REGISTRO Y SEGURIDAD
+
+#### TC-AUT-001: Login válido de viajero
 * **Objetivo:** Verificar que un viajero registrado pueda iniciar sesión con credenciales válidas y que el sistema cargue el panel de control correspondiente a su rol.
-* **Precondiciones:** El usuario existe en la base de datos demo (`viajero@aduanas.cl` / `viajero123`).
-* **Datos de Prueba:** 
-  * Correo: `viajero@aduanas.cl`
-  * Contraseña: `viajero123`
-* **Pasos de Ejecución:**
-  1. Navegar a la pantalla de inicio de sesión (`http://localhost:5173/`).
-  2. Ingresar el correo `viajero@aduanas.cl` en el campo correspondiente.
-  3. Ingresar la contraseña `viajero123`.
-  4. Presionar el botón "Iniciar sesión".
-* **Resultado Esperado:** Redirección automática al Dashboard principal del viajero, despliegue del badge de rol "Viajero" y carga del menú lateral filtrado.
-* **Resultado Obtenido:** Redirección al panel, badge verde "Viajero" cargado exitosamente.
+* **Datos de Prueba:** Correo: `viajero@aduanas.cl` / Contraseña: `viajero123`
+* **Resultado Esperado:** Redirección al Dashboard principal del viajero y visualización del rol.
+* **Resultado Obtenido:** Redirección exitosa, despliegue de badge "Viajero" y carga del panel de control.
 * **Estado:** **PASS (Exitoso)**
 
----
-
-### 🛂 CASO DE PRUEBA 02: Validación de Autenticación Fallida (Control de Errores)
-* **ID:** TC-AUT-002
-* **Módulo:** Autenticación y Seguridad
+#### TC-AUT-002: Login inválido
 * **Objetivo:** Verificar que el sistema bloquee el ingreso ante credenciales inválidas y muestre un banner destructivo con un mensaje de error claro.
-* **Precondiciones:** El sistema se encuentra en el formulario de Login.
-* **Datos de Prueba:**
-  * Correo: `viajero@aduanas.cl`
-  * Contraseña: `clave_incorrecta_pdi`
-* **Pasos de Ejecución:**
-  1. Ingresar el correo `viajero@aduanas.cl`.
-  2. Ingresar la contraseña errónea `clave_incorrecta_pdi`.
-  3. Presionar "Iniciar sesión".
-* **Resultado Esperado:** El sistema permanece en la pantalla de Login y despliega una alerta de error roja que dice "Credenciales incorrectas. Intente nuevamente."
-* **Resultado Obtenido:** Bloqueo de sesión y visualización de alerta roja de error con el texto esperado.
+* **Datos de Prueba:** Correo: `viajero@aduanas.cl` / Contraseña: `clave_incorrecta_pdi`
+* **Resultado Esperado:** El sistema permanece en la pantalla de Login y despliega una alerta de error roja.
+* **Resultado Obtenido:** Acceso bloqueado. Visualización de alerta roja con el mensaje "Credenciales incorrectas. Intente nuevamente."
+* **Estado:** **PASS (Exitoso)**
+
+#### TC-REG-001: Registro de usuario nuevo
+* **Objetivo:** Validar que un nuevo usuario viajero pueda registrarse de forma autónoma y que su cuenta quede activa de inmediato.
+* **Datos de Prueba:** Nombre: `Pedro Test Munoz`, Correo: `pedro.test@aduanas.cl`, RUN: `18.888.888-8`, Contraseña: `pedro123`
+* **Resultado Esperado:** Cuenta creada con éxito, redirección al Login y capacidad de autenticarse con el nuevo usuario.
+* **Resultado Obtenido:** Formulario de registro completado. El sistema guardó el usuario dinámicamente en el contexto (`localStorage`) e inició sesión correctamente tras redirigir.
+* **Estado:** **PASS (Exitoso)**
+
+#### TC-REC-001: Recuperación de contraseña
+* **Objetivo:** Verificar que un usuario que haya olvidado sus credenciales pueda solicitar la recuperación usando su correo electrónico.
+* **Datos de Prueba:** Correo: `viajero@aduanas.cl`
+* **Resultado Esperado:** Visualización de la tarjeta de éxito con las credenciales recuperadas para la demo académica.
+* **Resultado Obtenido:** Búsqueda en el repositorio de usuarios dinámicos exitosa; visualización inmediata de la tarjeta con la contraseña `viajero123`.
+* **Estado:** **PASS (Exitoso)**
+
+#### TC-SEC-001: Bloqueo de acceso no autenticado
+* **Objetivo:** Validar que el sistema deniegue el acceso directo a vistas del portal interno a usuarios que no hayan iniciado sesión activa.
+* **Resultado Esperado:** Intercepción de la ruta e redirección automática al Login.
+* **Resultado Obtenido:** Intentos de forzar vistas internas sin sesión activa son interceptados por `AuthContext`, redirigiendo al usuario al login.
 * **Estado:** **PASS (Exitoso)**
 
 ---
 
-### 🛂 CASO DE PRUEBA 03: Restricción y Carga de Menores de Edad (Ruta Alternativa)
-* **ID:** TC-VIAJ-001
-* **Módulo:** Gestión de Viajes y Control de Menores
-* **Objetivo:** Validar que el sistema impida finalizar el envío del viaje si el viajero declara viajar con menores de edad pero no ha completado los datos de estos, o si no adjunta el documento PDF de autorización notarial obligatorio.
-* **Precondiciones:** El usuario ha iniciado sesión como viajero y está en "Registrar Viaje".
-* **Datos de Prueba:**
-  * Origen: `Santiago`
-  * Destino: `Mendoza, Argentina`
-  * Checkbox: "Viajo con menores de edad" = Activo
-  * Datos del menor: Juanito Pérez (RUN: `22.345.678-9`, Edad: 10, Relación: Hijo)
-* **Pasos de Ejecución:**
-  1. Completar Paso 1 (Origen, Destino, Paso "Los Libertadores", Fecha futura, Motivo) y marcar check de menores. Presionar "Siguiente".
-  2. En el Paso 2, presionar "Siguiente" sin agregar ningún menor. *(Verificar bloqueo)*
-  3. Completar los campos del menor Juanito Pérez. Presionar el botón "+" para agregarlo a la tabla.
-  4. Con el menor en la lista pero sin archivo adjunto, presionar "Siguiente". *(Verificar bloqueo)*
-  5. Presionar el botón "Adjuntar PDF" del menor para cargar la autorización simulada.
-  6. Presionar "Siguiente", completar declaración SAG (trae productos = Sí, descripción: "3 manzanas"), confirmar en Paso 5 y presionar "Confirmar e Iniciar Trámite".
-* **Resultado Esperado:**
-  * Bloqueo en el paso 2 al intentar avanzar sin menores ("Debe agregar al menos un menor").
-  * Bloqueo en el paso 2 al intentar avanzar sin adjuntar autorización notarial en PDF.
-  * Al adjuntar y confirmar, redirección a "Seguimiento" con la solicitud creada en estado "Pendiente".
-* **Resultado Obtenido:** Comportamiento exactamente según lo esperado. Bloqueos de seguridad activos y trámite generado en base de datos.
+### 🛂 MÓDULO 2: GESTIÓN DE VIAJES, MENORES Y DECLARACIONES
+
+#### TC-VIAJ-001: Registrar viaje con menores (Validación de Flujo)
+* **Objetivo:** Validar que el sistema impida finalizar el envío si se declara viajar con menores pero no se completan los datos de estos, o si no se adjunta el documento PDF de autorización notarial obligatorio.
+* **Resultado Esperado:** Bloqueo en el Paso 2 ante la ausencia de menores o la falta del archivo PDF de autorización notarial.
+* **Resultado Obtenido:** El sistema bloqueó la navegación al Paso 3 mostrando las alertas: "Ha marcado que viaja con menores de edad. Por favor agregue al menos un menor" y "Falta adjuntar la autorización notarial para el menor...".
+* **Estado:** **PASS (Exitoso)**
+
+#### TC-MEN-001: Completar datos de menor
+* **Objetivo:** Verificar que se agreguen los datos del menor correctamente al grupo familiar.
+* **Datos de Prueba:** Nombre: `Juanito Perez`, RUN: `22.345.678-9`, Edad: `10`, Relación: `Hijo/a`
+* **Resultado Esperado:** El menor se agrega a la lista interactiva de la tabla.
+* **Resultado Obtenido:** Registro añadido a la tabla de menores en el Paso 2 con sus datos correctos.
+* **Estado:** **PASS (Exitoso)**
+
+#### TC-MEN-002: Adjuntar autorización notarial PDF
+* **Objetivo:** Verificar la simulación de carga del PDF de autorización para el menor.
+* **Resultado Esperado:** El estado de la columna cambia a exitoso displaying "autorizacion_juanito_perez.pdf ✓" y se habilita el avance.
+* **Resultado Obtenido:** Al hacer clic en "Adjuntar PDF", se cargó el archivo simulado y el sistema permitió avanzar de paso.
+* **Estado:** **PASS (Exitoso)**
+
+#### TC-SAG-001: Declaración SAG de alimentos
+* **Objetivo:** Comprobar que si el viajero declara portar productos regulados (SÍ), el sistema genera la derivación a inspección física en frontera.
+* **Datos de Prueba:** Declaración: `SÍ`, Descripción: `3 Manzanas y artesanias de madera`
+* **Resultado Esperado:** Registro de la alerta y derivación al funcionario en el portal del SAG.
+* **Resultado Obtenido:** Trámite guardado y clasificado en estado "Pendiente" con la marca de inspección SAG requerida.
+* **Estado:** **PASS (Exitoso)**
+
+#### TC-VEH-001: Registro de vehículo salida temporal
+* **Objetivo:** Comprobar que un viajero puede registrar su vehículo particular adjuntando el padrón para obtener el pase de aduana (Código QR).
+* **Datos de Prueba:** Patente: `ABCD-12`, Marca: `Toyota`, Modelo: `Hilux`, Año: `2021`, Color: `Blanco`, Propietario: `Juan Rodriguez Soto`, RUN: `12.345.678-9`, Padrón vehicular adjunto.
+* **Resultado Esperado:** Creación del pase vehicular con el código QR generado.
+* **Resultado Obtenido:** Pase de aduana generado exitosamente bajo el ID de control vehicular de la patente, mostrando el código QR correspondiente.
 * **Estado:** **PASS (Exitoso)**
 
 ---
 
-### 🛂 CASO DE PRUEBA 04: Auditoría Aduanera con Observación Obligatoria (Portal Funcionario)
-* **ID:** TC-FUNC-001
-* **Módulo:** Portal de Funcionarios y Seguimiento
-* **Objetivo:** Asegurar que el funcionario de aduanas no pueda rechazar un trámite sin ingresar una observación y que, al ingresar una observación válida, el viajero pueda visualizar el comentario del rechazo en tiempo real en su seguimiento.
-* **Precondiciones:** Existe una solicitud de viaje en estado "Pendiente" generada en el sistema.
-* **Datos de Prueba:**
-  * Funcionario: Felipe Ortega (`funcionario@aduanas.cl` / `func123`)
-  * Trámite seleccionado: El generado en el TC-VIAJ-001.
-  * Observación: "Documentacion incompleta del grupo familiar"
-* **Pasos de Ejecución:**
-  1. Iniciar sesión como funcionario de Aduanas.
-  2. Ir al "Portal Aduanas".
-  3. Seleccionar la solicitud pendiente del listado.
-  4. Hacer clic en "Rechazar Trámite".
-  5. Intentar confirmar sin escribir observaciones. *(Verificar bloqueo)*
-  6. Escribir la observación de rechazo y confirmar.
-  7. Cerrar sesión e ingresar nuevamente como el viajero original.
-  8. Navegar al módulo "Seguimiento" y seleccionar el trámite rechazado.
-* **Resultado Esperado:**
-  * El sistema debe obligar a ingresar observaciones de rechazo e impedir la transacción si está vacía.
-  * Tras confirmar con comentarios, el trámite debe pasar a estado "Rechazado".
-  * El viajero debe ver el trámite en estado "Rechazado" con el texto de la observación en una caja roja de aviso.
-* **Resultado Obtenido:** Validación de observaciones activa. El flujo de comunicación funcionario-ciudadano funciona reactivamente mediante el estado global.
+### 🛂 MÓDULO 3: ROLES, FISCALIZACIÓN Y AUDITORÍA
+
+#### TC-FUNC-001: Rechazo con observación obligatoria
+* **Objetivo:** Asegurar que el funcionario no pueda rechazar un trámite sin ingresar una observación y que el sistema exija redactar comentarios.
+* **Datos de Prueba:** Funcionario: `funcionario@aduanas.cl` / `func123`, Observación: `"Documentacion incompleta del grupo familiar"`
+* **Resultado Esperado:** Bloqueo del rechazo si la observación está vacía; pase a estado "Rechazado" al escribirla.
+* **Resultado Obtenido:** El sistema bloqueó la acción de rechazo inicialmente mostrando advertencia de campo obligatorio. Al ingresar la observación, el trámite pasó a estado **Rechazado** de forma correcta.
 * **Estado:** **PASS (Exitoso)**
 
----
+#### TC-OBS-001: Mostrar observación al usuario
+* **Objetivo:** Validar que el viajero pueda ver el estado "Rechazado" junto con la justificación en tiempo real.
+* **Resultado Esperado:** Visualización del trámite como "Rechazado" y el texto de la observación en una caja de alerta roja destacada en la vista de seguimiento.
+* **Resultado Obtenido:** El viajero visualizó el estado corregido y la alerta roja con la frase `"Documentacion incompleta del grupo familiar"`.
+* **Estado:** **PASS (Exitoso)**
 
-### 🛂 CASO DE PRUEBA 05: Alerta Migratoria de Arraigo Nacional (Control PDI)
-* **ID:** TC-PDI-001
-* **Módulo:** Control Migratorio (PDI)
+#### TC-PDI-001: Alerta migratoria por arraigo
 * **Objetivo:** Verificar que al realizar la consulta de control migratorio de un RUN con orden de arraigo vigente, el sistema dispare una alerta de restricción y bloquee la autorización de salida.
-* **Precondiciones:** Iniciar sesión como funcionario PDI (`pdi@aduanas.cl` / `pdi123`).
-* **Datos de Prueba:**
-  * RUN con arraigo: `11.111.111-1` (Roberto Ejemplo Sánchez)
-* **Pasos de Ejecución:**
-  1. Iniciar sesión con credenciales PDI.
-  2. Ir a "Control Migratorio".
-  3. Escribir el RUN `11.111.111-1` y presionar "Consultar RUN".
-* **Resultado Esperado:** Carga automática de una ficha de color rojo con una alerta destacada "ALERTA: ARRAIGO NACIONAL VIGENTE". El botón "Registrar Cruce Autorizado" debe estar deshabilitado.
-* **Resultado Obtenido:** Alerta disparada, restricción y botones bloqueados conforme al protocolo legal de seguridad.
+* **Datos de Prueba:** RUN con arraigo: `11.111.111-1` (Roberto Ejemplo Sánchez)
+* **Resultado Esperado:** Alerta destructiva destacada en rojo y botón de autorización de cruce bloqueado.
+* **Resultado Obtenido:** Carga de ficha migratoria en rojo brillante con el texto `"ALERTA: ARRAIGO NACIONAL VIGENTE"`. El botón de "Registrar Cruce Autorizado" se deshabilitó por completo de acuerdo al protocolo legal.
+* **Estado:** **PASS (Exitoso)**
+
+#### TC-RLY-001: Persistencia del trámite
+* **Objetivo:** Validar que el estado del trámite y el historial persistan en almacenamiento local incluso tras cerrar sesión o recargar.
+* **Resultado Esperado:** El sistema conserva el estado del trámite en `localStorage`.
+* **Resultado Obtenido:** Se verificó la conservación intacta de los trámites y logs de auditoría en `localStorage` al cerrar e iniciar sesión con diferentes roles.
 * **Estado:** **PASS (Exitoso)**
 
 ---
 
 ## 3. Conclusiones
 
-* **Conclusión de Ingeniería de Requisitos:** Las interfaces desarrolladas cumplen con la trazabilidad bidireccional entre la especificación académica de casos y la implementación técnica.
-* **Conclusión de Pruebas Unitarias/UAT:** La tasa de éxito del 100% y la persistencia de datos local garantizan que el prototipo de la plataforma es robusto y está listo para ser defendido ante la comisión evaluadora.
-
-
+* **Robustez del Sistema:** La integración de la gestión de usuarios dinámicos en el `AuthContext` garantiza la coherencia del control de acceso RBAC. El panel de administración ahora responde de forma reactiva e impacta directamente sobre la sesión y autenticación de los usuarios.
+* **Cumplimiento Académico:** Las interfaces cumplen rigurosamente con los criterios de aceptación y las reglas de negocio especificadas en el plan de pruebas de la asignatura Ingeniería de Software.

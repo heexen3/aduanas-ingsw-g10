@@ -7,29 +7,21 @@ import { Users, ShieldAlert, FileText, Check, Shield } from 'lucide-react';
 
 export function Administration() {
   const { auditLogs } = useTramites();
-  const { user: currentUser } = useAuth();
+  const { user: currentUser, users, actualizarUsuario } = useAuth();
   const [activeTab, setActiveTab] = useState<'usuarios' | 'permisos' | 'auditoria'>('usuarios');
-
-  // Estado local para los usuarios de la demo (para poder activar/desactivar y cambiar de rol)
-  const [usersList, setUsersList] = useState(SEED_USERS);
   const [actionMsg, setActionMsg] = useState('');
 
   const handleToggleActivo = (id: string) => {
-    setUsersList(prev => prev.map(u => {
-      if (u.id !== id) return u;
-      const nextState = !u.activo;
-      // Registrar log si corresponde
-      return { ...u, activo: nextState };
-    }));
+    const userToToggle = users.find(u => u.id === id);
+    if (!userToToggle) return;
+    const nextState = !userToToggle.activo;
+    actualizarUsuario(id, { activo: nextState });
     setActionMsg('Estado del usuario actualizado correctamente.');
     setTimeout(() => setActionMsg(''), 3000);
   };
 
   const handleChangeRol = (id: string, newRole: UserRole) => {
-    setUsersList(prev => prev.map(u => {
-      if (u.id !== id) return u;
-      return { ...u, role: newRole };
-    }));
+    actualizarUsuario(id, { role: newRole });
     setActionMsg(`Rol del usuario actualizado. Sesión previa invalidada.`);
     setTimeout(() => setActionMsg(''), 3000);
   };
@@ -98,7 +90,7 @@ export function Administration() {
                 </tr>
               </thead>
               <tbody>
-                {usersList.map(u => (
+                {users.map(u => (
                   <tr key={u.id}>
                     <td>
                       <strong style={{ display: 'block', fontSize: 'var(--text-xs)' }}>{u.nombre}</strong>
