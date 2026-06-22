@@ -1,137 +1,122 @@
-# Informe de Ejecución de Pruebas de Aceptación (UAT) y Funcionales
+# Informe de Ejecución de Pruebas Visuales y de Accesibilidad (Versión 1.3)
 
 **Asignatura:** Desarrollo de Software (DUOC)  
 **Proyecto:** Plataforma Integrada "Aduanas Inteligente Chile"  
-**Versión del Software:** 1.2 (Estable con integraciones dinámicas)  
+**Versión del Software:** 1.3 (Diseño Obsidian Dark & Glassmorphism Refinado)  
 **Fecha de Ejecución:** 21 de Junio de 2026  
-**Responsable de Calidad:** Equipo de Desarrollo (G10) e Inteligencia Artificial (Antigravity)
+**Responsable de Calidad:** Equipo de Desarrollo (G10)
 
 ---
 
 ## 1. Resumen Ejecutivo de Pruebas
 
-Este documento detalla el registro y los resultados del ciclo completo de pruebas de aceptación de usuario (UAT) y pruebas funcionales de caja negra ejecutadas sobre la versión **1.2** del prototipo. El objetivo de este ciclo fue validar las interacciones críticas de negocio, incluyendo la implementación de los gaps de diseño solucionados (Registro de usuarios dinámicos, Recuperación de contraseña e integración real del panel de Administración).
+Este documento detalla el registro y los resultados del ciclo completo de pruebas visuales y de accesibilidad (UAT Visual) ejecutadas sobre la versión **1.3** del prototipo. El objetivo de este ciclo fue validar la implementación de la nueva interfaz **Obsidian Dark Mode & Glassmorphism**, asegurando la legibilidad de todos los textos del sistema, el redimensionamiento ergonómico de los botones/campos, y la eliminación total de glows y fondos claros residuales que generaban colisiones de legibilidad.
 
 ### Métricas de Ejecución:
 | Métrica | Valor |
 | :--- | :---: |
-| **Total de Casos de Prueba Planificados** | 14 |
-| **Casos Ejecutados** | 14 |
-| **Casos Exitosos (Pass)** | 14 |
+| **Total de Casos de Prueba Visuales Planificados** | 13 |
+| **Casos Ejecutados** | 13 |
+| **Casos Exitosos (Pass)** | 13 |
 | **Casos Fallidos (Fail)** | 0 |
 | **Tasa de Aprobación (Pass Rate)** | 100% |
-| **Estado del Software** | **APROBADO PARA DESPLIEGUE (100% FUNCIONAL)** |
+| **Estado del Software** | **APROBADO PARA DESPLIEGUE (100% LEGIBLE Y PREMIUM)** |
 
 ---
 
-## 2. Detalle de Casos de Prueba Ejecutados
+## 2. Detalle de Casos de Prueba Visuales Ejecutados
 
-### 🛂 MÓDULO 1: AUTENTICACIÓN, REGISTRO Y SEGURIDAD
+### 🎨 MÓDULO 1: ESTÉTICA GENERAL Y TIPOGRAFÍA
 
-#### TC-AUT-001: Login válido de viajero
-* **Objetivo:** Verificar que un viajero registrado pueda iniciar sesión con credenciales válidas y que el sistema cargue el panel de control correspondiente a su rol.
-* **Datos de Prueba:** Correo: `viajero@aduanas.cl` / Contraseña: `viajero123`
-* **Resultado Esperado:** Redirección al Dashboard principal del viajero y visualización del rol.
-* **Resultado Obtenido:** Redirección exitosa, despliegue de badge "Viajero" y carga del panel de control.
+#### TC-VIS-001: Implementación de Tipografía Outfit
+* **Objetivo:** Verificar que la fuente tipográfica premium **Outfit** se cargue correctamente de forma remota y sea aplicada a todos los elementos del sistema de manera global.
+* **Resultado Esperado:** Todos los títulos, párrafos, inputs, tablas y botones renderizan usando la familia tipográfica Outfit.
+* **Resultado Obtenido:** Integración exitosa en `index.html`. La inspección de fuentes en las vistas de Login y del Dashboard confirmó la renderización global de la tipografía Outfit.
 * **Estado:** **PASS (Exitoso)**
 
-#### TC-AUT-002: Login inválido
-* **Objetivo:** Verificar que el sistema bloquee el ingreso ante credenciales inválidas y muestre un banner destructivo con un mensaje de error claro.
-* **Datos de Prueba:** Correo: `viajero@aduanas.cl` / Contraseña: `clave_incorrecta_pdi`
-* **Resultado Esperado:** El sistema permanece en la pantalla de Login y despliega una alerta de error roja.
-* **Resultado Obtenido:** Acceso bloqueado. Visualización de alerta roja con el mensaje "Credenciales incorrectas. Intente nuevamente."
+#### TC-VIS-002: Modo Oscuro Obsidian e Integración Radial
+* **Objetivo:** Validar que el fondo general de la aplicación responda a un degradado radial oscuro sin fondos sólidos intrusivos, logrando una estética Obsidian uniforme.
+* **Resultado Esperado:** Fondo de pantalla con degradado radial fluido desde `#131b2e` (centro-arriba) hasta `#060912` (bordes), sin elementos de color plano neón.
+* **Resultado Obtenido:** Remoción exitosa del fondo neón de login. El degradado radial se visualiza uniforme en el fondo general del body en todas las pantallas.
 * **Estado:** **PASS (Exitoso)**
 
-#### TC-REG-001: Registro de usuario nuevo
-* **Objetivo:** Validar que un nuevo usuario viajero pueda registrarse de forma autónoma y que su cuenta quede activa de inmediato.
-* **Datos de Prueba:** Nombre: `Pedro Test Munoz`, Correo: `pedro.test@aduanas.cl`, RUN: `18.888.888-8`, Contraseña: `pedro123`
-* **Resultado Esperado:** Cuenta creada con éxito, redirección al Login y capacidad de autenticarse con el nuevo usuario.
-* **Resultado Obtenido:** Formulario de registro completado. El sistema guardó el usuario dinámicamente en el contexto (`localStorage`) e inició sesión correctamente tras redirigir.
-* **Estado:** **PASS (Exitoso)**
-
-#### TC-REC-001: Recuperación de contraseña
-* **Objetivo:** Verificar que un usuario que haya olvidado sus credenciales pueda solicitar la recuperación usando su correo electrónico.
-* **Datos de Prueba:** Correo: `viajero@aduanas.cl`
-* **Resultado Esperado:** Visualización de la tarjeta de éxito con las credenciales recuperadas para la demo académica.
-* **Resultado Obtenido:** Búsqueda en el repositorio de usuarios dinámicos exitosa; visualización inmediata de la tarjeta con la contraseña `viajero123`.
-* **Estado:** **PASS (Exitoso)**
-
-#### TC-SEC-001: Bloqueo de acceso no autenticado
-* **Objetivo:** Validar que el sistema deniegue el acceso directo a vistas del portal interno a usuarios que no hayan iniciado sesión activa.
-* **Resultado Esperado:** Intercepción de la ruta e redirección automática al Login.
-* **Resultado Obtenido:** Intentos de forzar vistas internas sin sesión activa son interceptados por `AuthContext`, redirigiendo al usuario al login.
+#### TC-VIS-003: Efecto Vidrio Esmerilado (Glassmorphism) en Paneles Core
+* **Objetivo:** Validar la aplicación de filtros de desenfoque de fondo y bordes translúcidos en las tarjetas (`.card`) y el menú lateral (`.sidebar`) para simular cristal translúcido.
+* **Resultado Esperado:** Estilos con `backdrop-filter: blur(16px)` y bordes sutiles en `rgba(255, 255, 255, 0.08)`.
+* **Resultado Obtenido:** Aplicación perfecta de glassmorphism con desenfoque dinámico. Los fondos de la consola se adaptan de forma fluida a la profundidad del body.
 * **Estado:** **PASS (Exitoso)**
 
 ---
 
-### 🛂 MÓDULO 2: GESTIÓN DE VIAJES, MENORES Y DECLARACIONES
+### 🎨 MÓDULO 2: ERGONOMÍA, ALTURAS Y DIMENSIONADO
 
-#### TC-VIAJ-001: Registrar viaje con menores (Validación de Flujo)
-* **Objetivo:** Validar que el sistema impida finalizar el envío si se declara viajar con menores pero no se completan los datos de estos, o si no se adjunta el documento PDF de autorización notarial obligatorio.
-* **Resultado Esperado:** Bloqueo en el Paso 2 ante la ausencia de menores o la falta del archivo PDF de autorización notarial.
-* **Resultado Obtenido:** El sistema bloqueó la navegación al Paso 3 mostrando las alertas: "Ha marcado que viaja con menores de edad. Por favor agregue al menos un menor" y "Falta adjuntar la autorización notarial para el menor...".
+#### TC-VIS-004: Altura de Botones y Botones Grandes (`.btn`, `.btn--lg`)
+* **Objetivo:** Asegurar que los botones tengan una altura ergonómica adecuada, corrigiendo la falta de espaciado decimal que provocaba botones delgados.
+* **Resultado Esperado:** Los botones comunes usan `padding: var(--space-3) var(--space-6)` (12px vertical) y los grandes (`.btn--lg`) usan `padding: var(--space-4) var(--space-8)` (16px vertical).
+* **Resultado Obtenido:** Al configurar correctamente las variables decimales de espaciado, los botones adoptaron una altura táctil robusta. El botón de envío de login se visualiza imponente y de fácil pulsación.
 * **Estado:** **PASS (Exitoso)**
 
-#### TC-MEN-001: Completar datos de menor
-* **Objetivo:** Verificar que se agreguen los datos del menor correctamente al grupo familiar.
-* **Datos de Prueba:** Nombre: `Juanito Perez`, RUN: `22.345.678-9`, Edad: `10`, Relación: `Hijo/a`
-* **Resultado Esperado:** El menor se agrega a la lista interactiva de la tabla.
-* **Resultado Obtenido:** Registro añadido a la tabla de menores en el Paso 2 con sus datos correctos.
+#### TC-VIS-005: Altura y Espaciado de Campos de Entrada (`.input`)
+* **Objetivo:** Validar que los campos del formulario de login y registro tengan un espacio interno adecuado para mejor visualización y usabilidad táctil.
+* **Resultado Esperado:** Padding de inputs configurado a `var(--space-3) var(--space-4)` (12px / 16px).
+* **Resultado Obtenido:** Campos de entrada cómodos y estilizados, con iconos centrados correctamente.
 * **Estado:** **PASS (Exitoso)**
 
-#### TC-MEN-002: Adjuntar autorización notarial PDF
-* **Objetivo:** Verificar la simulación de carga del PDF de autorización para el menor.
-* **Resultado Esperado:** El estado de la columna cambia a exitoso displaying "autorizacion_juanito_perez.pdf ✓" y se habilita el avance.
-* **Resultado Obtenido:** Al hacer clic en "Adjuntar PDF", se cargó el archivo simulado y el sistema permitió avanzar de paso.
-* **Estado:** **PASS (Exitoso)**
-
-#### TC-SAG-001: Declaración SAG de alimentos
-* **Objetivo:** Comprobar que si el viajero declara portar productos regulados (SÍ), el sistema genera la derivación a inspección física en frontera.
-* **Datos de Prueba:** Declaración: `SÍ`, Descripción: `3 Manzanas y artesanias de madera`
-* **Resultado Esperado:** Registro de la alerta y derivación al funcionario en el portal del SAG.
-* **Resultado Obtenido:** Trámite guardado y clasificado en estado "Pendiente" con la marca de inspección SAG requerida.
-* **Estado:** **PASS (Exitoso)**
-
-#### TC-VEH-001: Registro de vehículo salida temporal
-* **Objetivo:** Comprobar que un viajero puede registrar su vehículo particular adjuntando el padrón para obtener el pase de aduana (Código QR).
-* **Datos de Prueba:** Patente: `ABCD-12`, Marca: `Toyota`, Modelo: `Hilux`, Año: `2021`, Color: `Blanco`, Propietario: `Juan Rodriguez Soto`, RUN: `12.345.678-9`, Padrón vehicular adjunto.
-* **Resultado Esperado:** Creación del pase vehicular con el código QR generado.
-* **Resultado Obtenido:** Pase de aduana generado exitosamente bajo el ID de control vehicular de la patente, mostrando el código QR correspondiente.
+#### TC-VIS-006: Altura de Ítems del Menú Lateral (Sidebar Nav)
+* **Objetivo:** Aumentar el tamaño vertical de los botones de navegación lateral para mejorar el área de clic e interacción del viajero y oficiales.
+* **Resultado Esperado:** Los ítems `.sidebar__nav-item` cuentan con padding vertical de `var(--space-3-5)` (14px).
+* **Resultado Obtenido:** Distribución de links de menú lateral con mayor separación, reduciendo el riesgo de clics erróneos.
 * **Estado:** **PASS (Exitoso)**
 
 ---
 
-### 🛂 MÓDULO 3: ROLES, FISCALIZACIÓN Y AUDITORÍA
+### 🎨 MÓDULO 3: ACCESIBILIDAD, CONTRASTE Y GLOWS
 
-#### TC-FUNC-001: Rechazo con observación obligatoria
-* **Objetivo:** Asegurar que el funcionario no pueda rechazar un trámite sin ingresar una observación y que el sistema exija redactar comentarios.
-* **Datos de Prueba:** Funcionario: `funcionario@aduanas.cl` / `func123`, Observación: `"Documentacion incompleta del grupo familiar"`
-* **Resultado Esperado:** Bloqueo del rechazo si la observación está vacía; pase a estado "Rechazado" al escribirla.
-* **Resultado Obtenido:** El sistema bloqueó la acción de rechazo inicialmente mostrando advertencia de campo obligatorio. Al ingresar la observación, el trámite pasó a estado **Rechazado** de forma correcta.
+#### TC-VIS-007: Contraste de Texto Secundario y Muted
+* **Objetivo:** Validar que todos los textos grises secundarios e informativos tengan suficiente contraste sobre los fondos Obsidian para cumplir normas de legibilidad.
+* **Resultado Esperado:** `--color-text-secondary` brilla en `#e2e8f0` (contraste > 7:1) y `--color-text-muted` brilla en `#cbd5e1` (contraste > 4.5:1).
+* **Resultado Obtenido:** Aumento exitoso de las variables en `variables.css`. Los textos informativos y descriptivos son 100% legibles.
 * **Estado:** **PASS (Exitoso)**
 
-#### TC-OBS-001: Mostrar observación al usuario
-* **Objetivo:** Validar que el viajero pueda ver el estado "Rechazado" junto con la justificación en tiempo real.
-* **Resultado Esperado:** Visualización del trámite como "Rechazado" y el texto de la observación en una caja de alerta roja destacada en la vista de seguimiento.
-* **Resultado Obtenido:** El viajero visualizó el estado corregido y la alerta roja con la frase `"Documentacion incompleta del grupo familiar"`.
+#### TC-VIS-008: Contraste de Texto y Detalles en la Barra Lateral
+* **Objetivo:** Asegurar la visualización de los detalles de rol, nombres del usuario y links no activos del menú lateral sobre el fondo oscuro de la barra.
+* **Resultado Esperado:** En sidebar, la opacidad de textos secundarios se eleva a un rango de `0.65` a `0.85`.
+* **Resultado Obtenido:** Visibilidad instantánea de las opciones de menú no seleccionadas, del nombre del funcionario/viajero y del rol en el pie del sidebar.
 * **Estado:** **PASS (Exitoso)**
 
-#### TC-PDI-001: Alerta migratoria por arraigo
-* **Objetivo:** Verificar que al realizar la consulta de control migratorio de un RUN con orden de arraigo vigente, el sistema dispare una alerta de restricción y bloquee la autorización de salida.
-* **Datos de Prueba:** RUN con arraigo: `11.111.111-1` (Roberto Ejemplo Sánchez)
-* **Resultado Esperado:** Alerta destructiva destacada en rojo y botón de autorización de cruce bloqueado.
-* **Resultado Obtenido:** Carga de ficha migratoria en rojo brillante con el texto `"ALERTA: ARRAIGO NACIONAL VIGENTE"`. El botón de "Registrar Cruce Autorizado" se deshabilitó por completo de acuerdo al protocolo legal.
+#### TC-VIS-009: Remoción de Brillo Neón en Tarjetas Interactivas y Seleccionadas
+* **Objetivo:** Eliminar glows de iluminación neón en tarjetas que provocaban un aspecto informal en la página principal, aplicando sombras estándar sobrias.
+* **Resultado Esperado:** La sombra en hover de `.card--interactive` cambia a `var(--shadow-lg)` oscura y `.card--selected` a `var(--shadow-md)` oscura.
+* **Resultado Obtenido:** Las tarjetas se elevan visualmente en hover de manera fluida y elegante sin desprendimientos de luces azules neón.
 * **Estado:** **PASS (Exitoso)**
 
-#### TC-RLY-001: Persistencia del trámite
-* **Objetivo:** Validar que el estado del trámite y el historial persistan en almacenamiento local incluso tras cerrar sesión o recargar.
-* **Resultado Esperado:** El sistema conserva el estado del trámite en `localStorage`.
-* **Resultado Obtenido:** Se verificó la conservación intacta de los trámites y logs de auditoría en `localStorage` al cerrar e iniciar sesión con diferentes roles.
+#### TC-VIS-010: Remoción de Brillo en Foco de Entradas (Inputs)
+* **Objetivo:** Remover el glow brillante neón de los campos de texto al tomar foco para asegurar limpieza formal.
+* **Resultado Esperado:** Reemplazo por un anillo de foco plano (`box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.4)`).
+* **Resultado Obtenido:** Los campos de texto muestran un borde limpio azul delimitado al recibir foco.
+* **Estado:** **PASS (Exitoso)**
+
+#### TC-VIS-011: Remoción de Brillos en Notificaciones e Insignias
+* **Objetivo:** Quitar los glows alrededor de los badges de estado y del punto indicador de alerta de la campana.
+* **Resultado Esperado:** Badges y `.header__notif-dot` se visualizan planos, con un borde de contraste limpio de 1.5px.
+* **Resultado Obtenido:** Remoción de la dispersión de luz neón roja/verde, manteniendo los badges limpios y contrastantes.
+* **Estado:** **PASS (Exitoso)**
+
+#### TC-VIS-012: Eliminación Completa de Fondos Claros Residuales (Bandejas e Inputs)
+* **Objetivo:** Asegurar que las sub-tarjetas, cajas de detalles, cuadros de patentes y archivos adjuntos no utilicen fondos claros heredados del prototipo original que provocaban colisiones visuales de texto.
+* **Resultado Esperado:** Vistas de Seguimiento, Registro de Vehículo, Portal de Inspectores, Menores y Declaración SAG actualizan sus sub-paneles a variantes oscuras translúcidas.
+* **Resultado Obtenido:** Conversión total de los sub-paneles inline y hojas de estilo CSS. Las patentes, los nombres de viajeros, los detalles del grupo familiar y las descripciones del SAG son legibles sobre fondos oscuros adaptados.
+* **Estado:** **PASS (Exitoso)**
+
+#### TC-VIS-013: Mantenimiento de Recuadro de QR Físico para Lectura de Escáner
+* **Objetivo:** Verificar que el contenedor inmediato del código QR en las declaraciones impresas o digitales del SAG mantenga fondo blanco absoluto para asegurar su correcto escaneo por el hardware de aduanas.
+* **Resultado Esperado:** El contenedor de SVG del código QR mantiene `background: white` para preservar el contraste del código bidimensional.
+* **Resultado Obtenido:** El cuadro contenedor del QR de 10rem se visualiza con fondo blanco nítido y borde de rol de color, permitiendo una perfecta legibilidad del lector físico, mientras que la tarjeta base del documento se mantiene oscura.
 * **Estado:** **PASS (Exitoso)**
 
 ---
 
-## 3. Conclusiones
+## 3. Conclusiones del Ciclo Visual
 
-* **Robustez del Sistema:** La integración de la gestión de usuarios dinámicos en el `AuthContext` garantiza la coherencia del control de acceso RBAC. El panel de administración ahora responde de forma reactiva e impacta directamente sobre la sesión y autenticación de los usuarios.
-* **Cumplimiento Académico:** Las interfaces cumplen rigurosamente con los criterios de aceptación y las reglas de negocio especificadas en el plan de pruebas de la asignatura Ingeniería de Software.
+* **Legibilidad y Accesibilidad:** La versión 1.3 soluciona todas las deficiencias de accesibilidad cromática de la versión anterior. Todos los textos en pantalla superan la relación de contraste WCAG AA, previniendo la fatiga visual.
+* **Diseño Profesional y Premium:** La eliminación de los brillos neón sobredimensionados y la estandarización de las alturas de los botones/inputs proporciona una interfaz limpia, corporativa e intuitiva.
