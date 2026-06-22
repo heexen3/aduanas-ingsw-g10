@@ -134,4 +134,3 @@ Este documento detalla el registro y los resultados del ciclo completo de prueba
 ## 3. Conclusiones
 
 * **Robustez del Sistema:** La integración de la gestión de usuarios dinámicos en el `AuthContext` garantiza la coherencia del control de acceso RBAC. El panel de administración ahora responde de forma reactiva e impacta directamente sobre la sesión y autenticación de los usuarios.
-* **Cumplimiento Académico:** Las interfaces cumplen rigurosamente con los criterios de aceptación y las reglas de negocio especificadas en el plan de pruebas de la asignatura Ingeniería de Software.
